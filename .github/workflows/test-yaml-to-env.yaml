@@ -10,6 +10,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
       - name: Set environment variables from YAML
         uses: edwynrrangel/github-actions-suite/actions/yaml-to-env@master
         with:
