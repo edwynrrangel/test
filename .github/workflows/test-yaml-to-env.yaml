@@ -35,7 +35,7 @@ jobs:
     
   test:
     needs: [setup]
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Set environment variables from YAML
         uses: edwynrrangel/github-actions-suite/actions/yaml-to-env@master
