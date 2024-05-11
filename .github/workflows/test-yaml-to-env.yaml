@@ -12,11 +12,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
       - name: Set environment variables from YAML
         uses: edwynrrangel/github-actions-suite/actions/yaml-to-env@master
         with:
           yaml-file: k8s/config.yaml
+      
+      - name: Debug GITHUB_ENV
+        run: cat $GITHUB_ENV
       
       - name: Print environment variables
         run: |
