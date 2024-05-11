@@ -1,0 +1,54 @@
+name: Deploy Go
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      base_path: ${{ steps.set_path.outputs.base_path }}
+      release_name: ${{ steps.set_project_name.outputs.release_name }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set path
+        id: set_path
+        run: |
+          echo "base_path=go" >> $GITHUB_OUTPUT
+
+      - name: Set Project Name
+        id: set_project_name
+        run: |
+          if [ "${{ github.event_name }}" != "workflow_dispatch" ]; then
+            release_name=$(git diff --name-only HEAD^ HEAD | grep '^go/' | cut -d '/' -f 2 | uniq)
+          else
+            release_name="${{ github.event.inputs.release_name }}"
+          fi
+          echo "release_name=$release_name" >> $GITHUB_OUTPUT
+    
+  test:
+    needs: [setup]
+    runs-on: self-hosted
+    steps:
+      - name: Set environment variables from YAML
+        uses: edwynrrangel/github-actions-suite/actions/yaml-to-env@master
+        with:
+          yaml-file: ${{ needs.setup.outputs.base_path }}/${{ needs.setup.outputs.release_name }}/k8s/config.yaml
+      
+      - name: Print environment variables
+        run: |
+          echo "ENVIRONMENT VARIABLES"
+          echo "base_path=$base_path"
+          echo "release_name=$release_name"
+          echo "namespace=$DEPLOY_NAMESPACE"
+        env:
+          base_path: ${{ needs.setup.outputs.base_path }}
+          release_name: ${{ needs.setup.outputs.release_name }}
+      
