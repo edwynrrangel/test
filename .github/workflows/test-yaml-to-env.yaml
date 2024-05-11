@@ -1,4 +1,4 @@
-name: Deploy Go
+name: Test yaml-to-env
 
 on:
   push:
