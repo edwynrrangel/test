@@ -5,10 +5,10 @@ deploy:
     image:
       repository: "edwynrrangel/grpc-server"
       tag: "latest"
-      pull_policy: Always
-    image_pull_secrets: 
-      - name: "dockerhub"
+      pullPolicy: Always
+    imagePullSecrets: 
+      name: "dockerhub"
     namespace: "default"
   helm:
     chart: "edwynrrangel/grpc-server"
-    chart_version: "0.1.0"
+    chartVersion: "0.1.0"
