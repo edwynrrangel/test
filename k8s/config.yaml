@@ -1,4 +1,14 @@
 deploy:
-  helm_chart: "edwynrrangel/grpc-service"
-  helm_chart_version: "0.0.1"
-  namespace: "grpc-test"
+  global:
+    project_name: "app"
+    clusterName: "grpc-service"
+    image:
+      repository: "edwynrrangel/grpc-server"
+      tag: "latest"
+      pull_policy: Always
+    image_pull_secrets: 
+      - name: "dockerhub"
+    namespace: "default"
+  helm:
+    chart: "edwynrrangel/grpc-server"
+    chart_version: "0.1.0"

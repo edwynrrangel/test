@@ -7,7 +7,7 @@ global:
   image:
     repository: "#{DEPLOY_IMAGE_REPOSITORY}#"
     tag: "#{DEPLOY_IMAGE_TAG}#"
-    pullPolicy: Always
+    pullPolicy: "#{DEPLOY_IMAGE_PULL_POLICY}#"
   imagePullSecrets: 
     - name: "#{DEPLOY_IMAGE_PULL_SECRETS}#"
   namespace: "#{DEPLOY_NAMESPACE}#"
