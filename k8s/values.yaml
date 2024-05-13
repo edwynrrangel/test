@@ -9,7 +9,7 @@ global:
     tag: "#{DEPLOY_GLOBAL_IMAGE_TAG}#"
     pullPolicy: "#{DEPLOY_GLOBAL_IMAGE_PULL_POLICY}#"
   imagePullSecrets: 
-    - name: "#{DEPLOY_GLOBAL_IMAGE_PULL_SECRETS}#"
+    - name: "#{DEPLOY_GLOBAL_IMAGE_PULL_SECRETS_NAME}#"
   namespace: "#{DEPLOY_GLOBAL_NAMESPACE}#"
 
 app:
