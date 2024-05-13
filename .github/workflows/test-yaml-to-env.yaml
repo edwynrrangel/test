@@ -21,9 +21,8 @@ jobs:
       - name: Debug GITHUB_ENV
         run: cat $GITHUB_ENV
       
-      - name: Print environment variables
-        run: |
-          echo "ENVIRONMENT VARIABLES"
-          echo "namespace=$DEPLOY_NAMESPACE"
-        
+      - name: Replace tokens in YAML
+        uses: edwynrrangel/github-actions-suite/actions/replace-tokens@master
+        with:
+          yaml-file: k8s/values.yaml
       
