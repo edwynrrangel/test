@@ -1,16 +1,16 @@
 global:
   enabled: true
-  projectName: "#{DEPLOY_PROJECT_NAME}#"
-  clusterName: "#{DEPLOY_CLUSTER_NAME}#"
+  projectName: "#{DEPLOY_GLOBAL_PROJECT_NAME}#"
+  clusterName: "#{DEPLOY_GLOBAL_CLUSTER_NAME}#"
 
   # Configuración de la imagen Docker de la aplicación
   image:
-    repository: "#{DEPLOY_IMAGE_REPOSITORY}#"
-    tag: "#{DEPLOY_IMAGE_TAG}#"
-    pullPolicy: "#{DEPLOY_IMAGE_PULL_POLICY}#"
+    repository: "#{DEPLOY_GLOBAL_IMAGE_REPOSITORY}#"
+    tag: "#{DEPLOY_GLOBAL_IMAGE_TAG}#"
+    pullPolicy: "#{DEPLOY_GLOBAL_IMAGE_PULL_POLICY}#"
   imagePullSecrets: 
-    - name: "#{DEPLOY_IMAGE_PULL_SECRETS}#"
-  namespace: "#{DEPLOY_NAMESPACE}#"
+    - name: "#{DEPLOY_GLOBAL_IMAGE_PULL_SECRETS}#"
+  namespace: "#{DEPLOY_GLOBAL_NAMESPACE}#"
 
 app:
   enabled: true

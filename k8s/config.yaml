@@ -1,6 +1,6 @@
 deploy:
   global:
-    project_name: "app"
+    projectName: "app"
     clusterName: "grpc-service"
     image:
       repository: "edwynrrangel/grpc-server"
